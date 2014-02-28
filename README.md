@@ -5,4 +5,4 @@ After that you can create an instance of KeyworddeskApi
 
 If you have an instance just do this:
 
-`$keyworddeskApi->etKeywordData(array('hund'),array('suggestedBid','googleInTitleCount','googleResultCount','searchVolume'))`
+`$keyworddeskApi->getKeywordData(array('hund'),array('suggestedBid','googleInTitleCount','googleResultCount','searchVolume'))`
