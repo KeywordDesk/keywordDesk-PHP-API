@@ -20,3 +20,9 @@ $moreThanOne = $keyworddesk->getKeywordData(array('hund','katze','maus'),array('
 
 // get n keywords with m fields
 $moreThanOne = $keyworddesk->getKeywordData(array('hund','katze','maus'),array('suggestedBid','googleInTitleCount'));
+
+// Plannerdata Count
+$plannerDataCount = $keyworddesk->getKeywordCount(KeyworddeskApi::$COUNT_TYPE_HAVE_PLANNER_DATA);
+
+// All Count
+$AllCount = $keyworddesk->getKeywordCount(KeyworddeskApi::$COUNT_TYPE_ALL);
