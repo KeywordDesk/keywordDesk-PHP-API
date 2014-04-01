@@ -2,6 +2,7 @@
 /**
 PHP Keyworddesk API Class for simple calling via functions
 **/
+include 'keyword-filter.php';
 
 class KeyworddeskApi {
 	private $token;
@@ -19,7 +20,23 @@ class KeyworddeskApi {
     public static $COUNT_TYPE_LONGTAIL = 2;
     public static $COUNT_TYPE_HAVE_PLANNER_DATA = 3;
 
+	public static $FILTER_ILIKE = "ILike";
+    public static $FILTER_NOTILIKE = "NotILike";
+    public static $FILTER_LIKE = "Like";
+    public static $FILTER_NOTLIKE = "NotLike";
+    public static $FILTER_EQUAL = "Equal";
+    public static $FILTER_NOTEQUAL = "NotEqual";
+    public static $FILTER_IBEGINSWITH = "IBeginsWith";
+    public static $FILTER_BEGINSWITH = "BeginsWith";
+    public static $FILTER_IENDSWITH = "IEndsWith";
+    public static $FILTER_ENDSWITH = "EndsWith";
 
+    public static $FIELD_SEARCHVOLUME = "searchVolume";
+    public static $FIELD_SUGGESTEDBID = "suggestedBid"; // also known as CPC
+    public static $FIELD_COMPETITION = "competition";
+    public static $FIELD_GOOGLE_RESULT_COUNT = "googleResultCount";
+    public static $FIELD_GOOGLE_INTITLE_COUNT = "googleInTitleCount";
+	
 	public function __construct($username, $password) {
 		$this->login($username, $password);
 	}
@@ -85,6 +102,13 @@ class KeyworddeskApi {
 		$context = stream_context_create($postArray);
 		return json_decode(file_get_contents($url,false,$context));
 	}
+	
+	public function filterKeywords($filter) {
+        $jsonObject = $filter->toJson();
+        $keywordResultList = $this->makeCall($this->getBaseUrl().'/filterKeywords',json_encode($jsonObject));
+
+		return $keywordResultList;
+    }
 	
 	private function getToken() {
 		return $this->token;

@@ -1,8 +1,8 @@
 <?php
 include 'keyworddesk-customer-api.php';
 
-$username = 'YourKeyworddeskUser';
-$password = 'YourKeyworddeskPassword';
+$username = 'youraccount';
+$password = 'yourpw';
 
 // Create Api Object and login via constructor
 $keyworddesk = new KeyworddeskApi($username,$password);
@@ -26,3 +26,10 @@ $plannerDataCount = $keyworddesk->getKeywordCount(KeyworddeskApi::$COUNT_TYPE_HA
 
 // All Count
 $AllCount = $keyworddesk->getKeywordCount(KeyworddeskApi::$COUNT_TYPE_ALL);
+
+// Simple KeywordFilter!
+$keywordFilter = new KeywordFilter();
+$keywordFilter->setKeyword("handy kaufen");
+$keywordFilter->setOpKeyword(KeyworddeskApi::$FILTER_ILIKE);
+$keywordFilter->setMax(100);
+$keywordFilter->setFieldsToGet(array('suggestedBid','googleInTitleCount','googleResultCount','searchVolume'));
