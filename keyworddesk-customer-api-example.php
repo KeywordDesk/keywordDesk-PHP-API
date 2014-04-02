@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include 'keyworddesk-customer-api.php';
 
 $username = 'youraccount';

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
 PHP Keyworddesk API Class for simple calling via functions
 **/
@@ -108,6 +108,10 @@ class KeyworddeskApi {
         $keywordResultList = $this->makeCall($this->getBaseUrl().'/filterKeywords',json_encode($jsonObject));
 
 		return $keywordResultList;
+    }
+	
+	public function logout(){
+        $this->makeCall($this->getBaseUrl().'/logout',"");
     }
 	
 	private function getToken() {
