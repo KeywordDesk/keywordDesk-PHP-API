@@ -31,6 +31,16 @@ class KeyworddeskApi {
     public static $FILTER_IENDSWITH = "IEndsWith";
     public static $FILTER_ENDSWITH = "EndsWith";
 
+	public static $FILTER_NUMERIC_EQUAL = "Equal";
+    public static $FILTER_NUMERIC_NOT_EQUAL = "NotEqual";
+    public static $FILTER_NUMERIC_LESS_THAN = "LessThan";
+    public static $FILTER_NUMERIC_LESS_THAN_EQUALS = "LessThanEquals";
+    public static $FILTER_NUMERIC_GREATER_THAN = "GreaterThan";
+    public static $FILTER_NUMERIC_GREATER_THAN_EQUALS = "GreaterThanEquals";
+    public static $FILTER_NUMERIC_BETWEEN = "Between";
+    public static $FILTER_NUMERIC_IS_NULL = "IsNull";
+    public static $FILTER_NUMERIC_IS_NOT_NULL = "IsNotNull";
+	
     public static $FIELD_SEARCHVOLUME = "searchVolume";
     public static $FIELD_SUGGESTEDBID = "suggestedBid"; // also known as CPC
     public static $FIELD_COMPETITION = "competition";
