@@ -274,7 +274,7 @@ class KeywordFilter {
 		
 		// add fields to get to json
 		$jsonObject["fieldsRequested"] = $this->getFieldsToGet();
-		var_dump(json_encode($this->cleanArray($jsonObject)));
+		
 		// return encoded JSON
 		return $this->cleanArray($jsonObject);	
 				
