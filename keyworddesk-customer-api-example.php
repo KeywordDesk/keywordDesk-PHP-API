@@ -33,3 +33,5 @@ $keywordFilter->setKeyword("handy kaufen");
 $keywordFilter->setOpKeyword(KeyworddeskApi::$FILTER_ILIKE);
 $keywordFilter->setMax(100);
 $keywordFilter->setFieldsToGet(array('suggestedBid','googleInTitleCount','googleResultCount','searchVolume'));
+
+$resultset = $keyworddesk->filterKeywords($keywordFilter);
