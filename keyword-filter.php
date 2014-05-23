@@ -259,7 +259,8 @@ class KeywordFilter {
 		$filterObject["googleInTitleCountTo"] = $this->getGoogleInTitleCountTo();
 		$filterObject["competition"] = $this->getCompetition();
 		$filterObject["competitionTo"] = $this->getCompetitionTo();
-		$filterObject["termCount"] = $this->getTermCountTo();
+		$filterObject["termCount"] = $this->getTermCount();
+		$filterObject["termCountTo"] = $this->getTermCountTo();
 		
 		// add operations to filterObject
 		$filterObject["op"] = $this->cleanArray($operations);

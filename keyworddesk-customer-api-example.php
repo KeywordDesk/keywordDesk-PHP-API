@@ -1,8 +1,8 @@
 ﻿<?php
 include 'keyworddesk-customer-api.php';
 
-$username = 'yourAccount';
-$password = 'yourPW';
+$username = 'youraccount';
+$password = 'yourpw';
 
 // Create Api Object and login via constructor
 $keyworddesk = new KeyworddeskApi($username,$password);
@@ -39,6 +39,7 @@ $keywordFilter->setTermCount("1");
 $keywordFilter->setTermCountTo("6");
 $keywordFilter->setOpSuggestedBid(KeyworddeskApi::$FILTER_NUMERIC_BETWEEN);
 $keywordFilter->setOpSearchVolume(KeyworddeskApi::$FILTER_NUMERIC_BETWEEN);
+$keywordFilter->setOpTermCount(KeyworddeskApi::$FILTER_NUMERIC_BETWEEN);
 $keywordFilter->setMax(100);
 $keywordFilter->setFieldsToGet(array('suggestedBid','googleInTitleCount','googleResultCount','searchVolume'));
 
