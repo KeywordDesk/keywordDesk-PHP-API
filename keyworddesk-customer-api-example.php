@@ -29,7 +29,7 @@ $AllCount = $keyworddesk->getKeywordCount(KeyworddeskApi::$COUNT_TYPE_ALL);
 
 // Simple KeywordFilter!
 $keywordFilter = new KeywordFilter();
-$keywordFilter->setKeyword("handy");
+$keywordFilter->setKeyword("a");
 $keywordFilter->setOpKeyword(KeyworddeskApi::$FILTER_ILIKE);
 
 // searchvolume
@@ -52,6 +52,7 @@ $keywordFilter->setGoogleResultCountTo("200000");
 $keywordFilter->setGoogleInTitleCount("0");
 $keywordFilter->setGoogleInTitleCountTo("1000000");
 
+// SET OPERATIONS
 $keywordFilter->setOpSuggestedBid(KeyworddeskApi::$FILTER_NUMERIC_BETWEEN);
 $keywordFilter->setOpSearchVolume(KeyworddeskApi::$FILTER_NUMERIC_BETWEEN);
 
@@ -59,8 +60,11 @@ $keywordFilter->setOpTermCount(KeyworddeskApi::$FILTER_NUMERIC_BETWEEN);
 $keywordFilter->setOpGoogleResultCount(KeyworddeskApi::$FILTER_NUMERIC_BETWEEN);
 $keywordFilter->setOpGoogleInTitleCount(KeyworddeskApi::$FILTER_NUMERIC_BETWEEN);
 
-$keywordFilter->setMax(100);
+$keywordFilter->setMax(10);
 $keywordFilter->setFieldsToGet(array('suggestedBid','googleInTitleCount','googleResultCount','searchVolume'));
 
-$resultset = $keyworddesk->filterKeywords($keywordFilter);
-var_dump($resultset);
+$resultsetNew = $keyworddesk->filter($keywordFilter);
+
+var_dump($keyworddesk->getCreditBalance()->creditsLeft);
+var_dump($resultsetNew->availableCount);
+var_dump($resultsetNew->keywords);

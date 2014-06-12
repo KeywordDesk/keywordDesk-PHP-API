@@ -13,7 +13,7 @@ class KeyworddeskApi {
 	
 	// possible fields for getKeywordData api call
 	private $possibleFields = array('suggestedBid','googleInTitleCount','googleResultCount','searchVolume');
-
+		
 	// possible COUNT TYPES
 	public static $COUNT_TYPE_ALL = 0;
     public static $COUNT_TYPE_SHORTTAIL = 1;
@@ -114,10 +114,26 @@ class KeyworddeskApi {
 	}
 	
 	public function filterKeywords($filter) {
-        $jsonObject = $filter->toJson();
+		return $this->filter($filter)->keywords;
+    }
+	
+	public function filter($filter) {
+		$jsonObject = $filter->toJson();
         $keywordResultList = $this->makeCall($this->getBaseUrl().'/filterKeywords',json_encode($jsonObject));
 
 		return $keywordResultList;
+	}
+
+    public function getCreditBalance() {
+		$responseContent =  $this->makeCall($this->getBaseUrl().'/getCreditBalance',"");
+        return $responseContent;
+    }
+
+    public function hasCredits() {
+        if($this->getCreditBalance()->creditsLeft > 0) {
+            return true;
+        }
+        return false;
     }
 	
 	public function logout(){
