@@ -68,3 +68,9 @@ $resultsetNew = $keyworddesk->filter($keywordFilter);
 var_dump($keyworddesk->getCreditBalance()->creditsLeft);
 var_dump($resultsetNew->availableCount);
 var_dump($resultsetNew->keywords);
+
+// SAVE TOKEN FOR REUSE DON'T OPEN A NEW SESSION FOR EVERY CALL
+$token = $keyworddesk->getToken();
+$keyworddesk2 = new KeyworddeskApi();
+$keyworddesk2->setToken($token);
+var_dump($keyworddesk2->filter($keywordFilter));

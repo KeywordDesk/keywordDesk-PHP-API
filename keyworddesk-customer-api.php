@@ -47,8 +47,10 @@ class KeyworddeskApi {
     public static $FIELD_GOOGLE_RESULT_COUNT = "googleResultCount";
     public static $FIELD_GOOGLE_INTITLE_COUNT = "googleInTitleCount";
 	
-	public function __construct($username, $password) {
-		$this->login($username, $password);
+	public function __construct($username="", $password="") {
+		if($username!=""&&$password!=""){		
+			$this->login($username, $password);
+		}
 	}
 	
 	// perform the login and stores the token in object
@@ -140,11 +142,11 @@ class KeyworddeskApi {
         $this->makeCall($this->getBaseUrl().'/logout',"");
     }
 	
-	private function getToken() {
+	public function getToken() {
 		return $this->token;
 	}
 	
-	private function setToken($token) {
+	public function setToken($token) {
 		$this->token = $token;
 	}
 	
