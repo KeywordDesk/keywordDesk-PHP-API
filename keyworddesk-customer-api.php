@@ -86,7 +86,7 @@ class KeyworddeskApi {
 		$requestArray = array();
 		$requestArray["countType"] = $countType;
 		
-		return $this->makeCall($this->getBaseUrl().'/getKeywordCount',json_encode($requestArray));
+		return $this->makeCall($this->getBaseUrl().'/getKeywordCount',json_encode($requestArray))->count;
 	}
 	
 	private function makeCall($url, $content) {	
