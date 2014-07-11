@@ -3,6 +3,7 @@
 PHP Keyworddesk API Class for simple calling via functions
 **/
 include 'keyword-filter.php';
+include 'keyword-request.php';
 
 class KeyworddeskApi {
 	private $token;
@@ -12,7 +13,24 @@ class KeyworddeskApi {
     private $urlApiBase = 'http://api.keyworddesk.com/v1';
 	
 	// possible fields for getKeywordData api call
-	private $possibleFields = array('suggestedBid','googleInTitleCount','googleResultCount','searchVolume');
+	private $possibleFields = array(
+								'suggestedBid',
+								'googleInTitleCount',
+								'googleResultCount',
+								'searchVolume',
+								'searchVolumeJanuary',
+								'searchVolumeFebruary',
+								'searchVolumeMarch',
+								'searchVolumeApril',
+								'searchVolumeMay',
+								'searchVolumeJune',
+								'searchVolumeJuly',
+								'searchVolumeAugust',
+								'searchVolumeSeptember',
+								'searchVolumeOctober',
+								'searchVolumeNovember',
+								'searchVolumeDecember',
+							);
 		
 	// possible COUNT TYPES
 	public static $COUNT_TYPE_ALL = 0;
@@ -46,6 +64,18 @@ class KeyworddeskApi {
     public static $FIELD_COMPETITION = "competition";
     public static $FIELD_GOOGLE_RESULT_COUNT = "googleResultCount";
     public static $FIELD_GOOGLE_INTITLE_COUNT = "googleInTitleCount";
+	public static $FIELD_SEARCHVOLUME_JANUARY = "searchVolumeJanuary";
+    public static $FIELD_SEARCHVOLUME_FEBRUARY = "searchVolumeFebruary";
+    public static $FIELD_SEARCHVOLUME_MARCH = "searchVolumeMarch";
+    public static $FIELD_SEARCHVOLUME_APRIL = "searchVolumeApril";
+    public static $FIELD_SEARCHVOLUME_MAY = "searchVolumeMay";
+    public static $FIELD_SEARCHVOLUME_JUNE = "searchVolumeJune";
+    public static $FIELD_SEARCHVOLUME_JULY = "searchVolumeJuly";
+    public static $FIELD_SEARCHVOLUME_AUGUST = "searchVolumeAugust";
+    public static $FIELD_SEARCHVOLUME_SEPTEMBER = "searchVolumeSeptember";
+    public static $FIELD_SEARCHVOLUME_OCTOBER = "searchVolumeOctober";
+    public static $FIELD_SEARCHVOLUME_NOVEMBER = "searchVolumeNovember";
+    public static $FIELD_SEARCHVOLUME_DECEMBER = "searchVolumeDecember";
 	
 	public function __construct($username="", $password="") {
 		if($username!=""&&$password!=""){		
@@ -137,6 +167,16 @@ class KeyworddeskApi {
         }
         return false;
     }
+	
+	public function orderKeywordData($keywordRequest){				
+		if(!is_array($keywordRequest)){
+			$keywordRequest = array($keywordRequest);
+		}
+	
+		$jsonString = json_encode($keywordRequest);	
+		$response = $this->makeCall($this->getBaseUrl().'/orderKeywordData',$jsonString);
+		return json_decode($response)->jobCreated->id;
+	}
 	
 	public function logout(){
         $this->makeCall($this->getBaseUrl().'/logout',"");

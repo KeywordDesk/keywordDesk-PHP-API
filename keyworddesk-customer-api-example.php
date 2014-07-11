@@ -1,8 +1,8 @@
 ﻿<?php
 include 'keyworddesk-customer-api.php';
 
-$username = 'youraccount';
-$password = 'yourpw';
+$username = 'account';
+$password = 'password';
 
 // Create Api Object and login via constructor
 $keyworddesk = new KeyworddeskApi($username,$password);
@@ -21,11 +21,9 @@ $moreThanOne = $keyworddesk->getKeywordData(array('hund','katze','maus'),array('
 // get n keywords with m fields
 $moreThanOne = $keyworddesk->getKeywordData(array('hund','katze','maus'),array('suggestedBid','googleInTitleCount'));
 
-// Plannerdata Count
 $plannerDataCount = $keyworddesk->getKeywordCount(KeyworddeskApi::$COUNT_TYPE_HAVE_PLANNER_DATA);
+$allCount = $keyworddesk->getKeywordCount(KeyworddeskApi::$COUNT_TYPE_ALL);
 
-// All Count
-$AllCount = $keyworddesk->getKeywordCount(KeyworddeskApi::$COUNT_TYPE_ALL);
 
 // Simple KeywordFilter!
 $keywordFilter = new KeywordFilter();
@@ -61,7 +59,7 @@ $keywordFilter->setOpGoogleResultCount(KeyworddeskApi::$FILTER_NUMERIC_BETWEEN);
 $keywordFilter->setOpGoogleInTitleCount(KeyworddeskApi::$FILTER_NUMERIC_BETWEEN);
 
 $keywordFilter->setMax(10);
-$keywordFilter->setFieldsToGet(array('suggestedBid','googleInTitleCount','googleResultCount','searchVolume'));
+$keywordFilter->setFieldsToGet(array('suggestedBid','googleInTitleCount','googleResultCount','searchVolume','searchVolumeJanuary'));
 
 $resultsetNew = $keyworddesk->filter($keywordFilter);
 
@@ -74,3 +72,5 @@ $token = $keyworddesk->getToken();
 $keyworddesk2 = new KeyworddeskApi();
 $keyworddesk2->setToken($token);
 var_dump($keyworddesk2->filter($keywordFilter));
+var_dump($allCount);
+var_dump($plannerDataCount);
